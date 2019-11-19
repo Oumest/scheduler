@@ -1,0 +1,3 @@
+@Imports time_scheduler.Areas.HelpPage.ModelDescriptions
+@ModelType SimpleTypeModelDescription
+@Model.Documentation

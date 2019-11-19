@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="schedulerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="activities">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="project_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="visible" Type="Int16" />
+    <Property Name="fixed_rate" Type="Double" Nullable="false" />
+    <Property Name="hourly_rate" Type="Double" Nullable="false" />
+    <Property Name="budget" Type="Double" />
+    <Property Name="time_budget" Type="Double" />
+    <Property Name="color" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="projects" Relationship="Self.FK__activitie__proje__5629CD9C" FromRole="activities" ToRole="projects" />
+    <NavigationProperty Name="timesheet" Relationship="Self.FK__timesheet__activ__534D60F1" FromRole="activities" ToRole="timesheet" />
+  </EntityType>
+  <EntityType Name="customer_teams">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="team_id" Type="Int32" />
+    <NavigationProperty Name="customers" Relationship="Self.FK__customer___custo__59063A47" FromRole="customer_teams" ToRole="customers" />
+    <NavigationProperty Name="teams" Relationship="Self.FK__customer___team___59FA5E80" FromRole="customer_teams" ToRole="teams" />
+  </EntityType>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="company" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contact" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="currency" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fixed_rate" Type="Double" Nullable="false" />
+    <Property Name="hourly_rate" Type="Double" Nullable="false" />
+    <Property Name="budget" Type="Double" />
+    <Property Name="time_budget" Type="Int32" />
+    <NavigationProperty Name="customer_teams" Relationship="Self.FK__customer___custo__59063A47" FromRole="customers" ToRole="customer_teams" />
+    <NavigationProperty Name="projects" Relationship="Self.FK__projects__custom__52593CB8" FromRole="customers" ToRole="projects" />
+  </EntityType>
+  <EntityType Name="project_teams">
+    <Key>
+      <PropertyRef Name="project_id" />
+    </Key>
+    <Property Name="project_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="team_id" Type="Int32" />
+    <NavigationProperty Name="projects" Relationship="Self.FK__project_t__proje__4D94879B" FromRole="project_teams" ToRole="projects" />
+    <NavigationProperty Name="teams" Relationship="Self.FK__project_t__team___4E88ABD4" FromRole="project_teams" ToRole="teams" />
+  </EntityType>
+  <EntityType Name="projects">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="order_number" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="visible" Type="Int16" />
+    <Property Name="fixed_rate" Type="Double" Nullable="false" />
+    <Property Name="hourly_rate" Type="Double" Nullable="false" />
+    <Property Name="budget" Type="Double" />
+    <Property Name="time_budget" Type="Int32" />
+    <Property Name="color" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="activities" Relationship="Self.FK__activitie__proje__5629CD9C" FromRole="projects" ToRole="activities" />
+    <NavigationProperty Name="customers" Relationship="Self.FK__projects__custom__52593CB8" FromRole="projects" ToRole="customers" />
+    <NavigationProperty Name="project_teams" Relationship="Self.FK__project_t__proje__4D94879B" FromRole="projects" ToRole="project_teams" />
+    <NavigationProperty Name="timesheet" Relationship="Self.FK__timesheet__proje__5441852A" FromRole="projects" ToRole="timesheet" />
+  </EntityType>
+  <EntityType Name="tags">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="timesheet_tags" Relationship="Self.FK__timesheet__tag_i__5812160E" FromRole="tags" ToRole="timesheet_tags" />
+  </EntityType>
+  <EntityType Name="teams">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="teamlead_id" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="customer_teams" Relationship="Self.FK__customer___team___59FA5E80" FromRole="teams" ToRole="customer_teams" />
+    <NavigationProperty Name="project_teams" Relationship="Self.FK__project_t__team___4E88ABD4" FromRole="teams" ToRole="project_teams" />
+    <NavigationProperty Name="users" Relationship="Self.FK__teams__teamlead___4CA06362" FromRole="teams" ToRole="users" />
+    <NavigationProperty Name="user_teams" Relationship="Self.FK__user_team__team___5165187F" FromRole="teams" ToRole="user_teams" />
+  </EntityType>
+  <EntityType Name="timesheet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="activity_id" Type="Int32" />
+    <Property Name="project_id" Type="Int32" />
+    <Property Name="start_time" Type="DateTime" Precision="0" />
+    <Property Name="end_time" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="duration" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="rate" Type="Double" />
+    <Property Name="exported" Type="Int16" />
+    <Property Name="fixed_rate" Type="Double" Nullable="false" />
+    <Property Name="hourly_rate" Type="Double" Nullable="false" />
+    <NavigationProperty Name="activities" Relationship="Self.FK__timesheet__activ__534D60F1" FromRole="timesheet" ToRole="activities" />
+    <NavigationProperty Name="projects" Relationship="Self.FK__timesheet__proje__5441852A" FromRole="timesheet" ToRole="projects" />
+    <NavigationProperty Name="timesheet_tags" Relationship="Self.FK__timesheet__times__571DF1D5" FromRole="timesheet" ToRole="timesheet_tags" />
+    <NavigationProperty Name="users" Relationship="Self.FK__timesheet__user___5535A963" FromRole="timesheet" ToRole="users" />
+  </EntityType>
+  <EntityType Name="timesheet_tags">
+    <Key>
+      <PropertyRef Name="timesheet_id" />
+    </Key>
+    <Property Name="timesheet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tag_id" Type="Int32" />
+    <NavigationProperty Name="tags" Relationship="Self.FK__timesheet__tag_i__5812160E" FromRole="timesheet_tags" ToRole="tags" />
+    <NavigationProperty Name="timesheet" Relationship="Self.FK__timesheet__times__571DF1D5" FromRole="timesheet_tags" ToRole="timesheet" />
+  </EntityType>
+  <EntityType Name="user_preferences">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="users" Relationship="Self.FK__user_pref__user___4F7CD00D" FromRole="user_preferences" ToRole="users" />
+  </EntityType>
+  <EntityType Name="user_teams">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="team_id" Type="Int32" />
+    <NavigationProperty Name="teams" Relationship="Self.FK__user_team__team___5165187F" FromRole="user_teams" ToRole="teams" />
+    <NavigationProperty Name="users" Relationship="Self.FK__user_team__user___5070F446" FromRole="user_teams" ToRole="users" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="180" FixedLength="false" Unicode="true" />
+    <Property Name="enabled" Type="Int16" />
+    <Property Name="salt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="last_login" Type="DateTime" Precision="0" />
+    <Property Name="confirmation_token" Type="String" MaxLength="180" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password_requested_at" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="roles" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="alias" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="registration_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="avatar" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="teams" Relationship="Self.FK__teams__teamlead___4CA06362" FromRole="users" ToRole="teams" />
+    <NavigationProperty Name="timesheet" Relationship="Self.FK__timesheet__user___5535A963" FromRole="users" ToRole="timesheet" />
+    <NavigationProperty Name="user_preferences" Relationship="Self.FK__user_pref__user___4F7CD00D" FromRole="users" ToRole="user_preferences" />
+    <NavigationProperty Name="user_teams" Relationship="Self.FK__user_team__user___5070F446" FromRole="users" ToRole="user_teams" />
+  </EntityType>
+  <Association Name="FK__activitie__proje__5629CD9C">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="activities" Type="Self.activities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="activities">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__timesheet__activ__534D60F1">
+    <End Role="activities" Type="Self.activities" Multiplicity="0..1" />
+    <End Role="timesheet" Type="Self.timesheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="activities">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timesheet">
+        <PropertyRef Name="activity_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__customer___custo__59063A47">
+    <End Role="customers" Type="Self.customers" Multiplicity="1" />
+    <End Role="customer_teams" Type="Self.customer_teams" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="customer_teams">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__customer___team___59FA5E80">
+    <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+    <End Role="customer_teams" Type="Self.customer_teams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teams">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="customer_teams">
+        <PropertyRef Name="team_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__projects__custom__52593CB8">
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__project_t__proje__4D94879B">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="project_teams" Type="Self.project_teams" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_teams">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__project_t__team___4E88ABD4">
+    <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+    <End Role="project_teams" Type="Self.project_teams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teams">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="project_teams">
+        <PropertyRef Name="team_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__timesheet__proje__5441852A">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="timesheet" Type="Self.timesheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timesheet">
+        <PropertyRef Name="project_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__timesheet__tag_i__5812160E">
+    <End Role="tags" Type="Self.tags" Multiplicity="0..1" />
+    <End Role="timesheet_tags" Type="Self.timesheet_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tags">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timesheet_tags">
+        <PropertyRef Name="tag_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__teams__teamlead___4CA06362">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="teams" Type="Self.teams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="teams">
+        <PropertyRef Name="teamlead_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user_team__team___5165187F">
+    <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
+    <End Role="user_teams" Type="Self.user_teams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="teams">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user_teams">
+        <PropertyRef Name="team_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__timesheet__times__571DF1D5">
+    <End Role="timesheet" Type="Self.timesheet" Multiplicity="1" />
+    <End Role="timesheet_tags" Type="Self.timesheet_tags" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="timesheet">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timesheet_tags">
+        <PropertyRef Name="timesheet_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__timesheet__user___5535A963">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="timesheet" Type="Self.timesheet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="timesheet">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user_pref__user___4F7CD00D">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="user_preferences" Type="Self.user_preferences" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user_preferences">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__user_team__user___5070F446">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="user_teams" Type="Self.user_teams" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user_teams">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="schedulerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="activities" EntityType="Self.activities" />
+    <EntitySet Name="customer_teams" EntityType="Self.customer_teams" />
+    <EntitySet Name="customers" EntityType="Self.customers" />
+    <EntitySet Name="project_teams" EntityType="Self.project_teams" />
+    <EntitySet Name="projects" EntityType="Self.projects" />
+    <EntitySet Name="tags" EntityType="Self.tags" />
+    <EntitySet Name="teams" EntityType="Self.teams" />
+    <EntitySet Name="timesheet" EntityType="Self.timesheet" />
+    <EntitySet Name="timesheet_tags" EntityType="Self.timesheet_tags" />
+    <EntitySet Name="user_preferences" EntityType="Self.user_preferences" />
+    <EntitySet Name="user_teams" EntityType="Self.user_teams" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK__activitie__proje__5629CD9C" Association="Self.FK__activitie__proje__5629CD9C">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="activities" EntitySet="activities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__timesheet__activ__534D60F1" Association="Self.FK__timesheet__activ__534D60F1">
+      <End Role="activities" EntitySet="activities" />
+      <End Role="timesheet" EntitySet="timesheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__customer___custo__59063A47" Association="Self.FK__customer___custo__59063A47">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="customer_teams" EntitySet="customer_teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__customer___team___59FA5E80" Association="Self.FK__customer___team___59FA5E80">
+      <End Role="teams" EntitySet="teams" />
+      <End Role="customer_teams" EntitySet="customer_teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__projects__custom__52593CB8" Association="Self.FK__projects__custom__52593CB8">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__project_t__proje__4D94879B" Association="Self.FK__project_t__proje__4D94879B">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="project_teams" EntitySet="project_teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__project_t__team___4E88ABD4" Association="Self.FK__project_t__team___4E88ABD4">
+      <End Role="teams" EntitySet="teams" />
+      <End Role="project_teams" EntitySet="project_teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__timesheet__proje__5441852A" Association="Self.FK__timesheet__proje__5441852A">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="timesheet" EntitySet="timesheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__timesheet__tag_i__5812160E" Association="Self.FK__timesheet__tag_i__5812160E">
+      <End Role="tags" EntitySet="tags" />
+      <End Role="timesheet_tags" EntitySet="timesheet_tags" />
+    </AssociationSet>
+    <AssociationSet Name="FK__teams__teamlead___4CA06362" Association="Self.FK__teams__teamlead___4CA06362">
+      <End Role="users" EntitySet="users" />
+      <End Role="teams" EntitySet="teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user_team__team___5165187F" Association="Self.FK__user_team__team___5165187F">
+      <End Role="teams" EntitySet="teams" />
+      <End Role="user_teams" EntitySet="user_teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK__timesheet__times__571DF1D5" Association="Self.FK__timesheet__times__571DF1D5">
+      <End Role="timesheet" EntitySet="timesheet" />
+      <End Role="timesheet_tags" EntitySet="timesheet_tags" />
+    </AssociationSet>
+    <AssociationSet Name="FK__timesheet__user___5535A963" Association="Self.FK__timesheet__user___5535A963">
+      <End Role="users" EntitySet="users" />
+      <End Role="timesheet" EntitySet="timesheet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user_pref__user___4F7CD00D" Association="Self.FK__user_pref__user___4F7CD00D">
+      <End Role="users" EntitySet="users" />
+      <End Role="user_preferences" EntitySet="user_preferences" />
+    </AssociationSet>
+    <AssociationSet Name="FK__user_team__user___5070F446" Association="Self.FK__user_team__user___5070F446">
+      <End Role="users" EntitySet="users" />
+      <End Role="user_teams" EntitySet="user_teams" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
