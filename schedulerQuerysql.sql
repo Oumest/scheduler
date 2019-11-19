@@ -1,62 +1,141 @@
-USE BookingDB;
+use scheduler;
 
-CREATE TABLE Customers (
-  customerId int PRIMARY KEY IDENTITY (1,1) NOT NULL  
-  ,email varchar(255) UNIQUE NOT NULL
+CREATE TABLE users (
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL, 
+  username nvarchar(180) UNIQUE NOT NULL,
+  email nvarchar(180) UNIQUE NOT NULL,
+  "enabled" smallint,
+  salt nvarchar(255) NOT NULL,
+  "password" nvarchar(255) NOT NULL,
+  lastlogin datetime2(0),
+  confirmation_token nvarchar(180) NOT NULL,
+  password_requested_at datetime2(0) NOT NULL,
+  roles nvarchar(MAX),
+  alias nvarchar(60),
+  registration_date datetime2(0) NOT NULL,
+  title nvarchar(50) NOT NULL,
+  avatar nvarchar(255) NOT NULL,
 );
 
-CREATE TABLE Bookings (
-  bookingId int PRIMARY KEY IDENTITY  (1,1) NOT NULL
-  ,customerId int 
-  ,bookingForDate smalldatetime
-  ,bookingMadeDate smalldatetime
-  ,allSeatsId int
-  
+CREATE TABLE timesheet(
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
+  user_id int NOT NULL,
+  activity_id int NOT NULL,
+  project_id int NOT NULL,
+  start_time datetime2(0) NOT NULL,
+  end_time datetime2(0) NOT NULL,
+  duration int,
+  "description" nvarchar(MAX),
+  rate float NOT NULL,
+  exported smallint,
+  fixed_rate float,
+  hourly_rate float
 );
 
-CREATE TABLE AllSeats (
-  allSeatsId int PRIMARY KEY IDENTITY (1,1) NOT NULL
-  ,loungeId int NOT NULL
-  ,rowNumber nvarchar(10) NOT NULL
-  ,seatNumber int NOT NULL
+CREATE TABLE customers(
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
+  "name" nvarchar(150) NOT NULL,
+  number nvarchar(50),
+  comment nvarchar(MAX),
+  company nvarchar(255),
+  contact nvarchar(255),
+  "address" nvarchar(MAX),
+  country nvarchar(2) NOT NULL,
+  currency nvarchar(3) NOT NULL,
+  phone nvarchar(255),
+  mobile nvarchar(255),
+  email nvarchar(255),
+  fixed_rate float,
+  hourly_rate float,
+  budget float NOT NULL,
+  time_budget int NOT NULL
 );
 
-CREATE TABLE Lounges (
-  loungeId int PRIMARY KEY IDENTITY(1,1) NOT NULL
-  ,seatCount int NOT NULL
+CREATE TABLE projects(
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
+  customer_id int NOT NULL,
+  "name" nvarchar(150),
+  order_number nvarchar(255),
+  comment nvarchar(MAX),
+  visible smallint NOT NULL,
+  fixed_rate float,
+  hourly_rate float,
+  budget float NOT NULL,
+  time_budget int NOT NULL,
+  color nvarchar(7)
 );
 
-CREATE TABLE MovieShowings (
-  movieShowingsId int PRIMARY KEY IDENTITY (1,1) NOT NULL
-  ,loungeId int
-  ,movieId int
-  ,movieShowingTime smalldatetime
+CREATE TABLE activities(
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
+  project_id int,
+  "name" nvarchar(150) NOT NULL,
+  comment nvarchar(MAX),
+  visible smallint NOT NULL,
+  fixed_rate float,
+  hourly_rate float,
+  budget float NOT NULL,
+  time_budget int NOT NULL,
+  color nvarchar(7)
 );
 
-CREATE TABLE Movies (
-  movieId int PRIMARY KEY IDENTITY (1,1) NOT NULL
-  ,movieName nvarchar(150) UNIQUE NOT NULL
+CREATE TABLE teams(
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
+  teamlead_id int NOT NULL,
+  "name" nvarchar(100) NOT NULL
 );
 
-CREATE TABLE UserAccounts ( 
-  userAccountId int PRIMARY KEY IDENTITY (1,1) NOT NULL 
-  ,accountName nvarchar(100) UNIQUE NOT NULL
-  ,accountPassword nvarchar(400) NOT NULL
-  ,customerId int NOT NULL
-  ,customerName varchar(255)
-  ,phoneNumber nvarchar(30) 
-  ,salt nvarchar(100)
+CREATE TABLE tags(
+  id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
+  "name" nvarchar(100) NOT NULL
 );
 
+CREATE TABLE user_teams(
+  user_id int PRIMARY KEY IDENTITY (1,1),
+  team_id int NOT NULL
+);
 
-ALTER TABLE Bookings ADD FOREIGN KEY (customerId) REFERENCES Customers (customerId);
+CREATE TABLE project_teams(
+  project_id int PRIMARY KEY IDENTITY (1,1),
+  team_id int NOT NULL
+);
 
-ALTER TABLE AllSeats ADD FOREIGN KEY (loungeId) REFERENCES Lounges (loungeId);
+CREATE TABLE customer_teams(
+  customer_id int PRIMARY KEY IDENTITY (1,1),
+  team_id int NOT NULL
+);
 
-ALTER TABLE Bookings ADD FOREIGN KEY (allSeatsId) REFERENCES AllSeats (allSeatsId);
+CREATE TABLE timesheet_tags(
+  timesheet_id int PRIMARY KEY IDENTITY (1,1),
+  tag_id int NOT NULL
+);
 
-ALTER TABLE MovieShowings ADD FOREIGN KEY (loungeId) REFERENCES Lounges (loungeId);
+CREATE TABLE user_preferences(
+  id int PRIMARY KEY IDENTITY (1,1),
+  user_id int,
+  "name" nvarchar (100) NOT NULL,
+  "value" nvarchar (255)
+);
 
-ALTER TABLE MovieShowings ADD FOREIGN KEY (movieId) REFERENCES Movies (movieId);
+ALTER TABLE timesheet ADD FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE timesheet ADD FOREIGN KEY (project_id) REFERENCES projects (id);
+ALTER TABLE timesheet ADD FOREIGN KEY (activity_id) REFERENCES activities (id);
 
-ALTER TABLE UserAccounts ADD FOREIGN KEY (customerId) REFERENCES Customers (customerId);
+ALTER TABLE projects ADD FOREIGN KEY (customer_id) REFERENCES customers (id);
+
+ALTER TABLE activities ADD FOREIGN KEY (project_id) REFERENCES projects (id);
+
+ALTER TABLE teams ADD FOREIGN KEY (teamlead_id) REFERENCES users (id);
+
+ALTER TABLE user_teams ADD FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE user_teams ADD FOREIGN KEY (team_id) REFERENCES teams (id);
+
+ALTER TABLE customer_teams ADD FOREIGN KEY (customer_id) REFERENCES customers (id);
+ALTER TABLE customer_teams ADD FOREIGN KEY (team_id) REFERENCES teams (id);
+
+ALTER TABLE project_teams ADD FOREIGN KEY (project_id) REFERENCES projects (id);
+ALTER TABLE project_teams ADD FOREIGN KEY (team_id) REFERENCES teams (id);
+
+ALTER TABLE timesheet_tags ADD FOREIGN KEY (timesheet_id) REFERENCES timesheet(id);
+ALTER TABLE timesheet_tags ADD FOREIGN KEY (tag_id) REFERENCES tags(id);
+
+ALTER TABLE user_preferences ADD FOREIGN KEY (user_id) REFERENCES users(id);
