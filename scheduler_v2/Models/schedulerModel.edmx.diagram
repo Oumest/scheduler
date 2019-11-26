@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bdb58e4ac6f7465fa5a4290b76941fe3" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="scheduler_v2Model.activities" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.customers" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.projects" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.tags" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.teams" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.timesheet" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.user_preferences" Width="1.5" PointX="9.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="scheduler_v2Model.users" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="scheduler_v2Model.FK__activitie__proje__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.FK__timesheet__activ__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.FK__projects__custom__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.FK__timesheet__proje__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.FK__teams__teamlead___534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.FK__timesheet__user___4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.FK__user_pref__user___5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.customer_teams" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.project_teams" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.timesheet_tags" ManuallyRouted="false" />
+        <AssociationConnector Association="scheduler_v2Model.user_teams" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="scheduler_v2ModelStoreContainer" CdmEntityContainer="scheduler_v2Entities">
+    <EntitySetMapping Name="activities">
+      <EntityTypeMapping TypeName="scheduler_v2Model.activities">
+        <MappingFragment StoreEntitySet="activities">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="fixed_rate" ColumnName="fixed_rate" />
+          <ScalarProperty Name="hourly_rate" ColumnName="hourly_rate" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="time_budget" ColumnName="time_budget" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="scheduler_v2Model.customers">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="company" ColumnName="company" />
+          <ScalarProperty Name="contact" ColumnName="contact" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="currency" ColumnName="currency" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fixed_rate" ColumnName="fixed_rate" />
+          <ScalarProperty Name="hourly_rate" ColumnName="hourly_rate" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="time_budget" ColumnName="time_budget" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects">
+      <EntityTypeMapping TypeName="scheduler_v2Model.projects">
+        <MappingFragment StoreEntitySet="projects">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="order_number" ColumnName="order_number" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="visible" ColumnName="visible" />
+          <ScalarProperty Name="fixed_rate" ColumnName="fixed_rate" />
+          <ScalarProperty Name="hourly_rate" ColumnName="hourly_rate" />
+          <ScalarProperty Name="budget" ColumnName="budget" />
+          <ScalarProperty Name="time_budget" ColumnName="time_budget" />
+          <ScalarProperty Name="color" ColumnName="color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tags">
+      <EntityTypeMapping TypeName="scheduler_v2Model.tags">
+        <MappingFragment StoreEntitySet="tags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="teams">
+      <EntityTypeMapping TypeName="scheduler_v2Model.teams">
+        <MappingFragment StoreEntitySet="teams">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="teamlead_id" ColumnName="teamlead_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="timesheet">
+      <EntityTypeMapping TypeName="scheduler_v2Model.timesheet">
+        <MappingFragment StoreEntitySet="timesheet">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="activity_id" ColumnName="activity_id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="exported" ColumnName="exported" />
+          <ScalarProperty Name="fixed_rate" ColumnName="fixed_rate" />
+          <ScalarProperty Name="hourly_rate" ColumnName="hourly_rate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_preferences">
+      <EntityTypeMapping TypeName="scheduler_v2Model.user_preferences">
+        <MappingFragment StoreEntitySet="user_preferences">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="value" ColumnName="value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="scheduler_v2Model.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="salt" ColumnName="salt" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="last_login" ColumnName="last_login" />
+          <ScalarProperty Name="confirmation_token" ColumnName="confirmation_token" />
+          <ScalarProperty Name="password_requested_at" ColumnName="password_requested_at" />
+          <ScalarProperty Name="roles" ColumnName="roles" />
+          <ScalarProperty Name="alias" ColumnName="alias" />
+          <ScalarProperty Name="registration_date" ColumnName="registration_date" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="avatar" ColumnName="avatar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="customer_teams" TypeName="scheduler_v2Model.customer_teams" StoreEntitySet="customer_teams">
+      <EndProperty Name="customers">
+        <ScalarProperty Name="id" ColumnName="customer_id" />
+      </EndProperty>
+      <EndProperty Name="teams">
+        <ScalarProperty Name="id" ColumnName="team_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="project_teams" TypeName="scheduler_v2Model.project_teams" StoreEntitySet="project_teams">
+      <EndProperty Name="projects">
+        <ScalarProperty Name="id" ColumnName="project_id" />
+      </EndProperty>
+      <EndProperty Name="teams">
+        <ScalarProperty Name="id" ColumnName="team_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="timesheet_tags" TypeName="scheduler_v2Model.timesheet_tags" StoreEntitySet="timesheet_tags">
+      <EndProperty Name="tags">
+        <ScalarProperty Name="id" ColumnName="tag_id" />
+      </EndProperty>
+      <EndProperty Name="timesheet">
+        <ScalarProperty Name="id" ColumnName="timesheet_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="user_teams" TypeName="scheduler_v2Model.user_teams" StoreEntitySet="user_teams">
+      <EndProperty Name="teams">
+        <ScalarProperty Name="id" ColumnName="team_id" />
+      </EndProperty>
+      <EndProperty Name="users">
+        <ScalarProperty Name="id" ColumnName="user_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
