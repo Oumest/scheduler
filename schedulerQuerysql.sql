@@ -90,23 +90,23 @@ CREATE TABLE tags(
 );
 
 CREATE TABLE user_teams(
-  user_id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
-  team_id int NOT NULL
+  user_id int,
+  team_id int 
 );
 
 CREATE TABLE project_teams(
-  project_id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
-  team_id int NOT NULL
+  project_id int,
+  team_id int
 );
 
 CREATE TABLE customer_teams(
-  customer_id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
-  team_id int NOT NULL
+  customer_id int,
+  team_id int 
 );
 
 CREATE TABLE timesheet_tags(
-  timesheet_id int PRIMARY KEY IDENTITY (1,1) NOT NULL,
-  tag_id int NOT NULL
+  timesheet_id int,
+  tag_id int 
 );
 
 CREATE TABLE user_preferences(
