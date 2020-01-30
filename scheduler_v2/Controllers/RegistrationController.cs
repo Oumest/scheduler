@@ -12,9 +12,12 @@ using System.Web.Http;
 
 using System.Web.Http.Description;
 using scheduler_v2.Managers;
+using System.Web.Http.Cors;
 
 namespace scheduler_v2.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("")]
     public class RegistrationController : ApiController
     {
         private scheduler_v2Entities entities = new scheduler_v2Entities();

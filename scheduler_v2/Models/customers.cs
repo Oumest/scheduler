@@ -17,6 +17,7 @@ namespace scheduler_v2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public customers()
         {
+            this.customer_teams = new HashSet<customer_teams>();
             this.projects = new HashSet<projects>();
         }
     
@@ -38,7 +39,8 @@ namespace scheduler_v2.Models
         public int time_budget { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customer_teams> customer_teams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<projects> projects { get; set; }
-        public virtual teams teams { get; set; }
     }
 }

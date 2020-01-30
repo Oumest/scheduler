@@ -14,6 +14,12 @@ namespace scheduler_v2.Models
     
     public partial class timesheet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public timesheet()
+        {
+            this.timesheet_tags = new HashSet<timesheet_tags>();
+        }
+    
         public int id { get; set; }
         public int user_id { get; set; }
         public int activity_id { get; set; }
@@ -29,7 +35,8 @@ namespace scheduler_v2.Models
     
         public virtual activities activities { get; set; }
         public virtual projects projects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<timesheet_tags> timesheet_tags { get; set; }
         public virtual users users { get; set; }
-        public virtual tags tags { get; set; }
     }
 }

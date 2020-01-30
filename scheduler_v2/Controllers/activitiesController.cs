@@ -7,19 +7,27 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using scheduler_v2.Managers;
 using scheduler_v2.Models;
 
 namespace scheduler_v2.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("")]
     public class ActivitiesController : ApiController
     {
         private scheduler_v2Entities db = new scheduler_v2Entities();
+        private ActivityManager activity = new ActivityManager();
 
         // GET: api/activities
+        [Route("api/activities")]
+        [HttpGet]
         public IQueryable<activities> Getactivities()
         {
-            return db.activities;
+            var items = activity.GetAllActivities();
+            return items;
         }
 
         // GET: api/activities/5
@@ -85,6 +93,9 @@ namespace scheduler_v2.Controllers
             return CreatedAtRoute("DefaultApi", new { id = activities.id }, activities);
         }
 
+
+
+
         // DELETE: api/activities/5
         [ResponseType(typeof(activities))]
         public IHttpActionResult Deleteactivities(int id)
@@ -108,6 +119,16 @@ namespace scheduler_v2.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        // GET: api/activities/activityByProjectId?id=*your id*
+        //[Route("api/activities/activityByProjectId/")]
+        [ActionName("activityByProjectId")]
+        [ResponseType(typeof(activities))]
+        public IQueryable GetactivitiesByProjectId(int id)
+        {
+            return activity.GetActivitiesByProjectId(id);
         }
 
         private bool activitiesExists(int id)

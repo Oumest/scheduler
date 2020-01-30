@@ -17,13 +17,13 @@ namespace scheduler_v2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tags()
         {
-            this.timesheet = new HashSet<timesheet>();
+            this.timesheet_tags = new HashSet<timesheet_tags>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<timesheet> timesheet { get; set; }
+        public virtual ICollection<timesheet_tags> timesheet_tags { get; set; }
     }
 }

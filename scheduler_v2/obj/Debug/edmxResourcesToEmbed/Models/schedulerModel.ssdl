@@ -17,10 +17,11 @@
   </EntityType>
   <EntityType Name="customer_teams">
     <Key>
-      <PropertyRef Name="customer_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="customer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="team_id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="int" />
+    <Property Name="team_id" Type="int" />
   </EntityType>
   <EntityType Name="customers">
     <Key>
@@ -45,10 +46,11 @@
   </EntityType>
   <EntityType Name="project_teams">
     <Key>
-      <PropertyRef Name="project_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="project_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="team_id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="project_id" Type="int" />
+    <Property Name="team_id" Type="int" />
   </EntityType>
   <EntityType Name="projects">
     <Key>
@@ -100,10 +102,11 @@
   </EntityType>
   <EntityType Name="timesheet_tags">
     <Key>
-      <PropertyRef Name="timesheet_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="timesheet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tag_id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timesheet_id" Type="int" />
+    <Property Name="tag_id" Type="int" />
   </EntityType>
   <EntityType Name="user_preferences">
     <Key>
@@ -116,10 +119,11 @@
   </EntityType>
   <EntityType Name="user_teams">
     <Key>
-      <PropertyRef Name="user_id" />
+      <PropertyRef Name="id" />
     </Key>
-    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="team_id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="team_id" Type="int" />
   </EntityType>
   <EntityType Name="users">
     <Key>
@@ -153,8 +157,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__customer___custo__5629CD9C">
-    <End Role="customers" Type="Self.customers" Multiplicity="1" />
-    <End Role="customer_teams" Type="Self.customer_teams" Multiplicity="0..1" />
+    <End Role="customers" Type="Self.customers" Multiplicity="0..1" />
+    <End Role="customer_teams" Type="Self.customer_teams" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="customers">
         <PropertyRef Name="id" />
@@ -165,7 +169,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__customer___team___571DF1D5">
-    <End Role="teams" Type="Self.teams" Multiplicity="1" />
+    <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
     <End Role="customer_teams" Type="Self.customer_teams" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="teams">
@@ -177,8 +181,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__project_t__proje__5812160E">
-    <End Role="projects" Type="Self.projects" Multiplicity="1" />
-    <End Role="project_teams" Type="Self.project_teams" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="project_teams" Type="Self.project_teams" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="projects">
         <PropertyRef Name="id" />
@@ -189,7 +193,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__project_t__team___59063A47">
-    <End Role="teams" Type="Self.teams" Multiplicity="1" />
+    <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
     <End Role="project_teams" Type="Self.project_teams" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="teams">
@@ -249,7 +253,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__timesheet__tag_i__5AEE82B9">
-    <End Role="tags" Type="Self.tags" Multiplicity="1" />
+    <End Role="tags" Type="Self.tags" Multiplicity="0..1" />
     <End Role="timesheet_tags" Type="Self.timesheet_tags" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tags">
@@ -261,8 +265,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__timesheet__times__59FA5E80">
-    <End Role="timesheet" Type="Self.timesheet" Multiplicity="1" />
-    <End Role="timesheet_tags" Type="Self.timesheet_tags" Multiplicity="0..1" />
+    <End Role="timesheet" Type="Self.timesheet" Multiplicity="0..1" />
+    <End Role="timesheet_tags" Type="Self.timesheet_tags" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="timesheet">
         <PropertyRef Name="id" />
@@ -297,7 +301,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__user_team__team___5535A963">
-    <End Role="teams" Type="Self.teams" Multiplicity="1" />
+    <End Role="teams" Type="Self.teams" Multiplicity="0..1" />
     <End Role="user_teams" Type="Self.user_teams" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="teams">
@@ -309,8 +313,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__user_team__user___5441852A">
-    <End Role="users" Type="Self.users" Multiplicity="1" />
-    <End Role="user_teams" Type="Self.user_teams" Multiplicity="0..1" />
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="user_teams" Type="Self.user_teams" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="users">
         <PropertyRef Name="id" />

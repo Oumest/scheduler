@@ -7,16 +7,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using scheduler_v2.Models;
 
 namespace scheduler_v2.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("")]
     public class UserController : ApiController
     {
         private scheduler_v2Entities db = new scheduler_v2Entities();
 
         // GET: api/users
+        [Route("api/users")]
+        [HttpGet]
         public IQueryable<users> Getusers()
         {
             return db.users;

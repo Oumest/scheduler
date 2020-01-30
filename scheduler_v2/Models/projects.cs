@@ -18,6 +18,7 @@ namespace scheduler_v2.Models
         public projects()
         {
             this.activities = new HashSet<activities>();
+            this.project_teams = new HashSet<project_teams>();
             this.timesheet = new HashSet<timesheet>();
         }
     
@@ -37,7 +38,8 @@ namespace scheduler_v2.Models
         public virtual ICollection<activities> activities { get; set; }
         public virtual customers customers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<project_teams> project_teams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<timesheet> timesheet { get; set; }
-        public virtual teams teams { get; set; }
     }
 }
