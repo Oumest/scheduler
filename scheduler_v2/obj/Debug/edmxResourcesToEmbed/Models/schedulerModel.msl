@@ -17,6 +17,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="customer_teams">
+      <EntityTypeMapping TypeName="scheduler_v2Model.customer_teams">
+        <MappingFragment StoreEntitySet="customer_teams">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="customers">
       <EntityTypeMapping TypeName="scheduler_v2Model.customers">
         <MappingFragment StoreEntitySet="customers">
@@ -36,6 +45,15 @@
           <ScalarProperty Name="hourly_rate" ColumnName="hourly_rate" />
           <ScalarProperty Name="budget" ColumnName="budget" />
           <ScalarProperty Name="time_budget" ColumnName="time_budget" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="project_teams">
+      <EntityTypeMapping TypeName="scheduler_v2Model.project_teams">
+        <MappingFragment StoreEntitySet="project_teams">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="project_id" ColumnName="project_id" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -91,6 +109,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="timesheet_tags">
+      <EntityTypeMapping TypeName="scheduler_v2Model.timesheet_tags">
+        <MappingFragment StoreEntitySet="timesheet_tags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="timesheet_id" ColumnName="timesheet_id" />
+          <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="user_preferences">
       <EntityTypeMapping TypeName="scheduler_v2Model.user_preferences">
         <MappingFragment StoreEntitySet="user_preferences">
@@ -98,6 +125,15 @@
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="value" ColumnName="value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_teams">
+      <EntityTypeMapping TypeName="scheduler_v2Model.user_teams">
+        <MappingFragment StoreEntitySet="user_teams">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="team_id" ColumnName="team_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -121,37 +157,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="customer_teams" TypeName="scheduler_v2Model.customer_teams" StoreEntitySet="customer_teams">
-      <EndProperty Name="customers">
-        <ScalarProperty Name="id" ColumnName="customer_id" />
-      </EndProperty>
-      <EndProperty Name="teams">
-        <ScalarProperty Name="id" ColumnName="team_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="project_teams" TypeName="scheduler_v2Model.project_teams" StoreEntitySet="project_teams">
-      <EndProperty Name="projects">
-        <ScalarProperty Name="id" ColumnName="project_id" />
-      </EndProperty>
-      <EndProperty Name="teams">
-        <ScalarProperty Name="id" ColumnName="team_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="timesheet_tags" TypeName="scheduler_v2Model.timesheet_tags" StoreEntitySet="timesheet_tags">
-      <EndProperty Name="tags">
-        <ScalarProperty Name="id" ColumnName="tag_id" />
-      </EndProperty>
-      <EndProperty Name="timesheet">
-        <ScalarProperty Name="id" ColumnName="timesheet_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="user_teams" TypeName="scheduler_v2Model.user_teams" StoreEntitySet="user_teams">
-      <EndProperty Name="teams">
-        <ScalarProperty Name="id" ColumnName="team_id" />
-      </EndProperty>
-      <EndProperty Name="users">
-        <ScalarProperty Name="id" ColumnName="user_id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

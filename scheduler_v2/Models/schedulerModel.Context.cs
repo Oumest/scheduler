@@ -18,6 +18,7 @@ namespace scheduler_v2.Models
         public scheduler_v2Entities()
             : base("name=scheduler_v2Entities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -26,12 +27,16 @@ namespace scheduler_v2.Models
         }
     
         public virtual DbSet<activities> activities { get; set; }
+        public virtual DbSet<customer_teams> customer_teams { get; set; }
         public virtual DbSet<customers> customers { get; set; }
+        public virtual DbSet<project_teams> project_teams { get; set; }
         public virtual DbSet<projects> projects { get; set; }
         public virtual DbSet<tags> tags { get; set; }
         public virtual DbSet<teams> teams { get; set; }
         public virtual DbSet<timesheet> timesheet { get; set; }
+        public virtual DbSet<timesheet_tags> timesheet_tags { get; set; }
         public virtual DbSet<user_preferences> user_preferences { get; set; }
+        public virtual DbSet<user_teams> user_teams { get; set; }
         public virtual DbSet<users> users { get; set; }
     }
 }

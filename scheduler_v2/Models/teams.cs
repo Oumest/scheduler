@@ -17,18 +17,21 @@ namespace scheduler_v2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public teams()
         {
-            this.customers = new HashSet<customers>();
-            this.projects = new HashSet<projects>();
+            this.customer_teams = new HashSet<customer_teams>();
+            this.project_teams = new HashSet<project_teams>();
+            this.user_teams = new HashSet<user_teams>();
         }
     
         public int id { get; set; }
         public int teamlead_id { get; set; }
         public string name { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<customer_teams> customer_teams { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<project_teams> project_teams { get; set; }
         public virtual users users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<customers> customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<projects> projects { get; set; }
+        public virtual ICollection<user_teams> user_teams { get; set; }
     }
 }

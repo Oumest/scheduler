@@ -20,6 +20,7 @@ namespace scheduler_v2.Models
             this.teams = new HashSet<teams>();
             this.timesheet = new HashSet<timesheet>();
             this.user_preferences = new HashSet<user_preferences>();
+            this.user_teams = new HashSet<user_teams>();
         }
     
         public int id { get; set; }
@@ -43,5 +44,7 @@ namespace scheduler_v2.Models
         public virtual ICollection<timesheet> timesheet { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_preferences> user_preferences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user_teams> user_teams { get; set; }
     }
 }

@@ -4,11 +4,17 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 using System.Linq;
+using System.Diagnostics;
 
 namespace scheduler_v2.Managers
 {
     public class UserManager
     {
+        /*
+         * Add to user interface: 
+         *      getCurrentDate
+         *      
+         */
         public users CreateAccount(string username, string password, string email) // creates user account entity ready to be sent
         {
             string newSalt = CreateSalt(10);
@@ -206,6 +212,26 @@ namespace scheduler_v2.Managers
 
                 return userAccId;
             }
+        }
+        public string GetUserRole(int id)
+        {
+            using(var db = new scheduler_v2Entities())
+            {
+                var role = (from item in db.users
+                            where item.id == id
+                            select item.roles).FirstOrDefault();
+                return role;
+            }
+        }
+        public users GetUser(int id)
+        {
+            using (var db = new scheduler_v2Entities())
+            {
+                users user = db.users.Find(id);
+                Debug.WriteLine(user.username);
+                return user;
+            }
+
         }
     }
 }
